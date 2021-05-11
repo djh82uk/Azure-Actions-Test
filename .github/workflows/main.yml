@@ -30,6 +30,7 @@ jobs:
 
     # Checks that all Terraform configuration files adhere to a canonical format
     - name: Terraform Format
+    - uses: actions/checkout@v2
       with:
         ARM_CLIENT_ID: ${{ steps.GetSecretAction.outputs.TerraformSPID }}
         ARM_CLIENT_SECRET: ${{ steps.GetSecretAction.outputs.TerraformSpSecret }}
@@ -39,6 +40,7 @@ jobs:
 
     # Generates an execution plan for Terraform
     - name: Terraform Plan
+    - uses: actions/checkout@v2
       with:
         ARM_CLIENT_ID: ${{ steps.GetSecretAction.outputs.TerraformSPID }}
         ARM_CLIENT_SECRET: ${{ steps.GetSecretAction.outputs.TerraformSpSecret }}
@@ -49,6 +51,7 @@ jobs:
       # On push to main, build or change infrastructure according to Terraform configuration files
       # Note: It is recommended to set up a required "strict" status check in your repository for "Terraform Cloud". See the documentation on "strict" required status checks for more information: https://help.github.com/en/github/administering-a-repository/types-of-required-status-checks
     - name: Terraform Apply
+    - uses: actions/checkout@v2
       with:
         ARM_CLIENT_ID: ${{ steps.GetSecretAction.outputs.TerraformSPID }}
         ARM_CLIENT_SECRET: ${{ steps.GetSecretAction.outputs.TerraformSpSecret }}
