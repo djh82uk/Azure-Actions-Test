@@ -20,15 +20,6 @@ jobs:
         keyvault: "SharedServicesKeyVault"
         secrets: 'TenantID, SubscriptionID, TerraformSpSecret, TerraformSPID'
       id: GetSecretAction
-    # Install the latest version of Terraform CLI and configure the Terraform CLI configuration file with a Terraform Cloud user API token
-    - name: Setup Terraform
-      uses: hashicorp/setup-terraform@v1
-      with:
-        cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }}
-        ARM_CLIENT_ID: ${{ steps.GetSecretAction.outputs.TerraformSPID }}
-        ARM_CLIENT_SECRET: ${{ steps.GetSecretAction.outputs.TerraformSpSecret }}
-        ARM_SUBSCRIPTION_ID: ${{ steps.GetSecretAction.outputs.SubscriptionID }}
-        ARM_TENANT_ID: ${{ steps.GetSecretAction.outputs.TenantID }}
 
     # Initialize a new or existing Terraform working directory by creating initial files, loading any remote state, downloading modules, etc.
     - name: Terraform Init
@@ -36,15 +27,33 @@ jobs:
 
     # Checks that all Terraform configuration files adhere to a canonical format
     - name: Terraform Format
+      with:
+        cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }}
+        ARM_CLIENT_ID: ${{ steps.GetSecretAction.outputs.TerraformSPID }}
+        ARM_CLIENT_SECRET: ${{ steps.GetSecretAction.outputs.TerraformSpSecret }}
+        ARM_SUBSCRIPTION_ID: ${{ steps.GetSecretAction.outputs.SubscriptionID }}
+        ARM_TENANT_ID: ${{ steps.GetSecretAction.outputs.TenantID }}
       run: terraform fmt -check
 
     # Generates an execution plan for Terraform
     - name: Terraform Plan
+      with:
+        cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }}
+        ARM_CLIENT_ID: ${{ steps.GetSecretAction.outputs.TerraformSPID }}
+        ARM_CLIENT_SECRET: ${{ steps.GetSecretAction.outputs.TerraformSpSecret }}
+        ARM_SUBSCRIPTION_ID: ${{ steps.GetSecretAction.outputs.SubscriptionID }}
+        ARM_TENANT_ID: ${{ steps.GetSecretAction.outputs.TenantID }}
       run: terraform plan
 
       # On push to main, build or change infrastructure according to Terraform configuration files
       # Note: It is recommended to set up a required "strict" status check in your repository for "Terraform Cloud". See the documentation on "strict" required status checks for more information: https://help.github.com/en/github/administering-a-repository/types-of-required-status-checks
     - name: Terraform Apply
+      with:
+        cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }}
+        ARM_CLIENT_ID: ${{ steps.GetSecretAction.outputs.TerraformSPID }}
+        ARM_CLIENT_SECRET: ${{ steps.GetSecretAction.outputs.TerraformSpSecret }}
+        ARM_SUBSCRIPTION_ID: ${{ steps.GetSecretAction.outputs.SubscriptionID }}
+        ARM_TENANT_ID: ${{ steps.GetSecretAction.outputs.TenantID }}
       if: github.ref == 'refs/heads/main' && github.event_name == 'push'
       run: terraform apply -auto-approve
 
