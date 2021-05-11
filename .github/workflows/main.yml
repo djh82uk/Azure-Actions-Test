@@ -8,7 +8,7 @@ jobs:
     defaults:
       run:
         shell: bash
-        working-directory: "0001- VM Deployment 01"
+        working-directory: "./Terraform/0001- VM Deployment 01"
     steps:
     # checkout the repo
     - uses: actions/checkout@v2
