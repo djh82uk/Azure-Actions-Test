@@ -23,12 +23,13 @@ jobs:
 
     # Initialize a new or existing Terraform working directory by creating initial files, loading any remote state, downloading modules, etc.
     - name: Terraform Init
+      using: "composite"
       run: terraform init
 
     # Checks that all Terraform configuration files adhere to a canonical format
     - name: Terraform Format
+      using: "composite"
       with:
-        cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }}
         ARM_CLIENT_ID: ${{ steps.GetSecretAction.outputs.TerraformSPID }}
         ARM_CLIENT_SECRET: ${{ steps.GetSecretAction.outputs.TerraformSpSecret }}
         ARM_SUBSCRIPTION_ID: ${{ steps.GetSecretAction.outputs.SubscriptionID }}
@@ -37,8 +38,8 @@ jobs:
 
     # Generates an execution plan for Terraform
     - name: Terraform Plan
+      using: "composite"
       with:
-        cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }}
         ARM_CLIENT_ID: ${{ steps.GetSecretAction.outputs.TerraformSPID }}
         ARM_CLIENT_SECRET: ${{ steps.GetSecretAction.outputs.TerraformSpSecret }}
         ARM_SUBSCRIPTION_ID: ${{ steps.GetSecretAction.outputs.SubscriptionID }}
@@ -49,7 +50,7 @@ jobs:
       # Note: It is recommended to set up a required "strict" status check in your repository for "Terraform Cloud". See the documentation on "strict" required status checks for more information: https://help.github.com/en/github/administering-a-repository/types-of-required-status-checks
     - name: Terraform Apply
       with:
-        cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }}
+      using: "composite"
         ARM_CLIENT_ID: ${{ steps.GetSecretAction.outputs.TerraformSPID }}
         ARM_CLIENT_SECRET: ${{ steps.GetSecretAction.outputs.TerraformSpSecret }}
         ARM_SUBSCRIPTION_ID: ${{ steps.GetSecretAction.outputs.SubscriptionID }}
