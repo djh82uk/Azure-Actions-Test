@@ -24,8 +24,8 @@ module "VNet"{
 source = "../../Modules/Virtual Network/"
 vnet_name       = "GitHub-Test-VNet"
 resourcegroup   = "GitHub-Test-RG"
-addrspace       = "["10.0.0.0/16"]"
+addrspace       = ["10.0.0.0/16"]
 location        = "west europe"
 subnet_name     = "vmsubnet"
-addrprefixes    = "["10.0.2.0/24"]"
+addrprefixes    = ["10.0.2.0/24"]
 }
