@@ -21,15 +21,18 @@ jobs:
         secrets: 'TenantID, SubscriptionID, TerraformSpSecret, TerraformSPID, TerraformStorageKey'
       id: GetSecretAction
     - uses: actions/checkout@v2
-    - uses: microsoft/variable-substitution@v1 
+    
+    
+    - uses: cschleiden/replace-tokens@v1
       with:
-        files: './Terraform/0001- VM Deployment 01/deploy.tf'
+        files: '["**/*.tf"]'
       env:
         resource_group_name: ${{ secrets.STORAGEACCOUNTRG }}
         storage_account_name: ${{ secrets.STORAGEACCOUNTNAME }}
         container_name: ${{ secrets.STORAGECONTAINERNAME }}
         key: ${{ steps.GetSecretAction.outputs.TerraformStorageKey }}
-
+    
+    
     - uses: hashicorp/setup-terraform@v1
       env:
         ARM_CLIENT_ID: ${{ steps.GetSecretAction.outputs.TerraformSPID }}
