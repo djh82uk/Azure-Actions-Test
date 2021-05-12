@@ -30,6 +30,12 @@ jobs:
       container_name: ${{ secrets.STORAGECONTAINERNAME }}
       key: ${{ steps.GetSecretAction.outputs.TerraformStorageKey }}
       
+  Terraform:
+    runs-on: ubuntu-latest
+      defaults:
+        run:
+          shell: bash
+          working-directory: "./Terraform/0001- VM Deployment 01"
     - uses: hashicorp/setup-terraform@v1
       env:
         ARM_CLIENT_ID: ${{ steps.GetSecretAction.outputs.TerraformSPID }}
