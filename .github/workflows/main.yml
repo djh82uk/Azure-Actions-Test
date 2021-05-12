@@ -1,4 +1,4 @@
-name: TerraformWorkflow
+name: "0001- VM Deployment 01"
 
 on: [push]
 
