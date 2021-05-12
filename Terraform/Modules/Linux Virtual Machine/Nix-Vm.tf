@@ -16,14 +16,11 @@ resource "azurerm_linux_virtual_machine" "VM1" {
   location            = "${var.location}"
   size                = "${var.vm_size}"
   admin_username      = "${var.vm_admin_user}"
+  admin_password      = "${var.vm_admin_pass}"    
   network_interface_ids = [
     azurerm_network_interface.VM1.id,
   ]
 
-  admin_ssh_key {
-    username   = "${var.vm_admin_user}"
-    public_key = file("~/.ssh/id_rsa.pub")
-  }
 
   os_disk {
     caching              = "${var.osdisk_caching}"
