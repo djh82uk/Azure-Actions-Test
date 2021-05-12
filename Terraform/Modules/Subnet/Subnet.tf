@@ -4,3 +4,8 @@ resource "azurerm_subnet" "VNET1" {
   virtual_network_name = "${var.vnet_name}"
   address_prefixes     = "${var.addrprefixes}"
 }
+
+
+output "subnetid" {
+  value = "${azurerm_subnet.VNET1.id}"
+  }
