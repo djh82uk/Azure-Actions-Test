@@ -23,7 +23,7 @@ jobs:
     - uses: actions/checkout@v2
     - uses: microsoft/variable-substitution@v1 
       with:
-        files: '*.tf'
+        files: 'deploy.tf'
       env:
         resource_group_name: ${{ secrets.STORAGEACCOUNTRG }}
         storage_account_name: ${{ secrets.STORAGEACCOUNTNAME }}
