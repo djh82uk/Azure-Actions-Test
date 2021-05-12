@@ -61,7 +61,7 @@ jobs:
 
 
     - name: Terraform Format
-      run: terraform fmt -check
+      run: terraform fmt
       env:
         ARM_CLIENT_ID: ${{ steps.GetSecretAction.outputs.TerraformSPID }}
         ARM_CLIENT_SECRET: ${{ steps.GetSecretAction.outputs.TerraformSpSecret }}
