@@ -1,4 +1,4 @@
-name: "0001- VM Deploy 01"
+name: "0001- VM Plan 01"
 
 on:
   pull_request:
