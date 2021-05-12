@@ -25,20 +25,18 @@ jobs:
     with:
         files: '*.tf'
     env:
-        resource_group_name: ${{ secrets.STORAGEACCOUNTRG }}
-        storage_account_name: ${{ secrets.STORAGEACCOUNTNAME }}
-        container_name: ${{ secrets.STORAGECONTAINERNAME }}
-        key: ${{ steps.GetSecretAction.outputs.TerraformStorageKey }}
-        
-
-    # Install the latest version of Terraform CLI and configure the Terraform CLI configuration file with a Terraform Cloud user API token
-    - name: Setup Terraform
+      resource_group_name: ${{ secrets.STORAGEACCOUNTRG }}
+      storage_account_name: ${{ secrets.STORAGEACCOUNTNAME }}
+      container_name: ${{ secrets.STORAGECONTAINERNAME }}
+      key: ${{ steps.GetSecretAction.outputs.TerraformStorageKey }}
+      
+    - uses: hashicorp/setup-terraform@v1
       env:
         ARM_CLIENT_ID: ${{ steps.GetSecretAction.outputs.TerraformSPID }}
         ARM_CLIENT_SECRET: ${{ steps.GetSecretAction.outputs.TerraformSpSecret }}
         ARM_SUBSCRIPTION_ID: ${{ steps.GetSecretAction.outputs.SubscriptionID }}
         ARM_TENANT_ID: ${{ steps.GetSecretAction.outputs.TenantID }}
-      uses: hashicorp/setup-terraform@v1
+      
       
     # Initialize a new or existing Terraform working directory by creating initial files, loading any remote state, downloading modules, etc.
     - name: Terraform Init
