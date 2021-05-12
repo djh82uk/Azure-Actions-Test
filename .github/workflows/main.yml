@@ -36,6 +36,8 @@ jobs:
     
     
     - uses: hashicorp/setup-terraform@v1
+      with: 
+        terraform_version: 0.15.3
       env:
         ARM_CLIENT_ID: ${{ steps.GetSecretAction.outputs.TerraformSPID }}
         ARM_CLIENT_SECRET: ${{ steps.GetSecretAction.outputs.TerraformSpSecret }}
