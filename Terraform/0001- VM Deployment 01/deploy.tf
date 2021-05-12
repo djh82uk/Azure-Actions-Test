@@ -21,9 +21,9 @@ resource "azurerm_resource_group" "RG1" {
 module "VNet"{
 source = "../Modules/Virtual Network/"
 vnet_name       = "GitHub-Test-VNet"
-resourcegroup   = "${azurerm_resource_group.RG1.name}"
+resourcegroup   = ${azurerm_resource_group.RG1.name}
 addrspace       = ["10.0.0.0/16"]
-location        = "west europe"
+location        = ${azurerm_resource_group.RG1.location}
 subnet_name     = "vmsubnet"
 addrprefixes    = ["10.0.2.0/24"]
 }
