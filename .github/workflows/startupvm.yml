@@ -1,6 +1,6 @@
 # This is a basic workflow to help you get started with Actions
 
-name: Shutdown GitHub-Test-VM
+name: Startup GitHub-Test-VM
 
 # Controls when the action will run. 
 on: workflow_dispatch
