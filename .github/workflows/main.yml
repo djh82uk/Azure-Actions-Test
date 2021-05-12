@@ -30,8 +30,8 @@ jobs:
         resource_group_name: ${{ secrets.STORAGEACCOUNTRG }}
         storage_account_name: ${{ secrets.STORAGEACCOUNTNAME }}
         container_name: ${{ secrets.STORAGECONTAINERNAME }}
-        access_key: ${{ steps.GetSecretAction.outputs.TerraformStorageKey }}
-        blob_name: ${{ secrets.BLOBNAME }}
+        access_key: "${{ steps.GetSecretAction.outputs.TerraformStorageKey }}"
+        blob_name: "${{ secrets.BLOBNAME }}"
 
     
     
