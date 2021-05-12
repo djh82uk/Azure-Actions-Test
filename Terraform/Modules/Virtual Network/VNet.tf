@@ -1,13 +1,13 @@
-resource "azurerm_virtual_network" "example" {
-  name                = "example-network"
+resource "azurerm_virtual_network" "VNET1" {
+  name                = "GitHub-Test-VNet"
   address_space       = ["10.0.0.0/16"]
-  location            = azurerm_resource_group.example.location
-  resource_group_name = azurerm_resource_group.example.name
+  location            = "west europe"
+  resource_group_name = "GitHub-Test-RG"
 }
 
-resource "azurerm_subnet" "example" {
-  name                 = "internal"
-  resource_group_name  = azurerm_resource_group.example.name
-  virtual_network_name = azurerm_virtual_network.example.name
+resource "azurerm_subnet" "VNET1" {
+  name                 = "VMs"
+  resource_group_name  = "GitHub-Test-RG"
+  virtual_network_name = "GitHub-Test-VNet"
   address_prefixes     = ["10.0.2.0/24"]
 }
