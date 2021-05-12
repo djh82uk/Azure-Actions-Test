@@ -2,10 +2,10 @@ terraform {
   backend "azurerm" {
     source  = "hashicorp/azurerm"
     version = "=2.46.0"
-    resource_group_name  = ${{ secrets.STORAGEACCOUNTRG }}
-    storage_account_name = ${{ secrets.STORAGEACCOUNTNAME }}
-    container_name       = ${{ secrets.STORAGECONTAINERNAME }}
-    key                  = "prod.terraform.tfstate"
+    resource_group_name  = #{resource_group_name}#
+    storage_account_name = #{storage_account_name}#
+    container_name       = #{container_name}#
+    key                  = #{key}#
   }
 }
 }
@@ -14,3 +14,10 @@ terraform {
 provider "azurerm" {
   features {}
 }
+
+
+
+        
+        
+        
+        
