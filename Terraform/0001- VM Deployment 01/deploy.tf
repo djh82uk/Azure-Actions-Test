@@ -13,7 +13,7 @@ provider "azurerm" {
   features {}
 }
 
-resource "azurerm_resource_group" "VM1" {
+resource "azurerm_resource_group" "RG1" {
   name     = "GitHub-Test-RG"
   location = "West Europe"
 }
@@ -21,7 +21,7 @@ resource "azurerm_resource_group" "VM1" {
 module "VNet"{
 source = "../Modules/Virtual Network/"
 vnet_name       = "GitHub-Test-VNet"
-resourcegroup   = "GitHub-Test-RG"
+resourcegroup   = "azurerm_resource_group.RG1.name"
 addrspace       = ["10.0.0.0/16"]
 location        = "west europe"
 subnet_name     = "vmsubnet"
