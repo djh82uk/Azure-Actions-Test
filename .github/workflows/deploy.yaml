@@ -21,9 +21,10 @@ jobs:
     - uses: Azure/get-keyvault-secrets@v1
       with: 
         keyvault: "SharedServicesKeyVault"
-        secrets: 'TenantID, SubscriptionID, TerraformSpSecret, TerraformSPID, TerraformStorageKey'
+        secrets: 'TenantID, SubscriptionID, TerraformSpSecret, TerraformSPID, TerraformStorageKey, github-test-admin-user, github-test-admin-pass'
       id: GetSecretAction
 
+    
     
     - uses: cschleiden/replace-tokens@v1
       with:
@@ -33,6 +34,9 @@ jobs:
         storage_account_name: ${{ secrets.STORAGEACCOUNTNAME }}
         container_name: ${{ secrets.STORAGECONTAINERNAME }}
         blob_name: ${{ secrets.BLOBNAME }}
+        admin_user: ${{ steps.GetSecretAction.outputs.github_test_admin_user }}
+        admin_pass: ${{ steps.GetSecretAction.outputs.github_test_admin_pass }}
+
 
     
     
