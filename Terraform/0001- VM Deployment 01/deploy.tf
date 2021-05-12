@@ -8,7 +8,7 @@ terraform {
     key                  = "#{blob_name}#"
   }
 }
-}
+
 
 # Configure the Microsoft Azure Provider
 provider "azurerm" {
