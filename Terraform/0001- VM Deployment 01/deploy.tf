@@ -16,6 +16,10 @@ provider "azurerm" {
   features {}
 }
 
+resource "azurerm_resource_group" "VM1" {
+  name     = "GitHub-Test-RG"
+  location = "West Europe"
+}
 
 module "VNet"{
 source = "../../Modules/Virtual Network/"
