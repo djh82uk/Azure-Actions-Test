@@ -5,7 +5,8 @@ terraform {
     resource_group_name  = #{resource_group_name}#
     storage_account_name = #{storage_account_name}#
     container_name       = #{container_name}#
-    key                  = #{TerraformStorageKey}#
+    access_key           = #{TerraformStorageKey}#
+    key                  = #{blob_name}#
   }
 }
 }
