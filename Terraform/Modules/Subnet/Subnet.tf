@@ -1,4 +1,4 @@
-resource "azurerm_subnet" "VNET1" {
+resource "azurerm_subnet" "SUBNET1" {
   name                 = "${var.subnet_name}"
   resource_group_name  = "${var.resourcegroup}"
   virtual_network_name = "${var.vnet_name}"
@@ -7,5 +7,5 @@ resource "azurerm_subnet" "VNET1" {
 
 
 output "subnetid" {
-  value = "${azurerm_subnet.VNET1.id}"
+  value = "${azurerm_subnet.SUBNET1.id}"
   }
