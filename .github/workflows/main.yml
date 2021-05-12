@@ -32,12 +32,7 @@ jobs:
 
 
   Terraform:
-    runs-on: ubuntu-latest
-      defaults:
-        run:
-          shell: bash
-          working-directory: "./Terraform/0001- VM Deployment 01"
-    - uses: hashicorp/setup-terraform@v1
+      uses: hashicorp/setup-terraform@v1
       env:
         ARM_CLIENT_ID: ${{ steps.GetSecretAction.outputs.TerraformSPID }}
         ARM_CLIENT_SECRET: ${{ steps.GetSecretAction.outputs.TerraformSpSecret }}
