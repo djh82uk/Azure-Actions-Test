@@ -5,3 +5,6 @@ resource "azurerm_virtual_network" "VNET1" {
   resource_group_name = "${var.resourcegroup}"
 }
 
+output "vnetname" {
+  value = "${azurerm_virtual_network.VNET1.name}"
+  }
