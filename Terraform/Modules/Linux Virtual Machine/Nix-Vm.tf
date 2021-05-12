@@ -15,6 +15,7 @@ resource "azurerm_linux_virtual_machine" "VM1" {
   resource_group_name = "${var.resourcegroup}"
   location            = "${var.location}"
   size                = "${var.vm_size}"
+  disable_password_authentication = "${var.disable_password_auth}"
   admin_username      = "${var.vm_admin_user}"
   admin_password      = "${var.vm_admin_pass}"    
   network_interface_ids = [
