@@ -30,7 +30,7 @@ jobs:
         resource_group_name: ${{ secrets.STORAGEACCOUNTRG }}
         storage_account_name: ${{ secrets.STORAGEACCOUNTNAME }}
         container_name: ${{ secrets.STORAGECONTAINERNAME }}
-        key: ${{ steps.GetSecretAction.outputs.TerraformStorageKey }}
+
     
     
     - uses: hashicorp/setup-terraform@v1
