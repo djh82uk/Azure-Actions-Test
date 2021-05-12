@@ -122,3 +122,9 @@ jobs:
     - name: Terraform Apply
       if: github.ref == 'refs/heads/main' && github.event_name == 'push'
       run: terraform apply -auto-approve
+      env:
+        ARM_CLIENT_ID: ${{ steps.GetSecretAction.outputs.TerraformSPID }}
+        ARM_CLIENT_SECRET: ${{ steps.GetSecretAction.outputs.TerraformSpSecret }}
+        ARM_SUBSCRIPTION_ID: ${{ steps.GetSecretAction.outputs.SubscriptionID }}
+        ARM_TENANT_ID: ${{ steps.GetSecretAction.outputs.TenantID }}
+
