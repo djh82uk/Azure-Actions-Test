@@ -43,6 +43,7 @@ vm_nic_name           = "GitHub-Test-NIC"
 ip_name               = "GitHub-Test-IP" 
 vm_name               = "GitHub-Test-VM"  
 vm_size               = "B1s" 
+disable_password_auth = false
 vm_admin_user         = "#{admin_user}#" 
 vm_admin_pass         = "#{admin_pass}#" 
 osdisk_caching        = "ReadWrite"
