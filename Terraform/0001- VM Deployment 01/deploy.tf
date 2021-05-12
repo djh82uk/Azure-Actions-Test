@@ -16,7 +16,9 @@ provider "azurerm" {
 }
 
 
-
+module "VNet"{
+source = "../../Modules/Virtual Network/"
+}
         
         
         
