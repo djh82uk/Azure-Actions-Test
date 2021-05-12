@@ -5,7 +5,7 @@ resource "azurerm_network_interface" "VM1" {
 
   ip_configuration {
     name                          = "${var.ip_name}"
-    subnet_id                     = azurerm_subnet.VNET1.id
+    subnet_id                     = "${var.subnet_id}"
     private_ip_address_allocation = "${var.addr_allocation}"
   }
 }
