@@ -45,6 +45,7 @@ image_publisher       = "Canonical"
 image_offer           = "UbuntuServer"
 image_sku             = "18.04-LTS"
 image_version         = "latest"
+subnet_id             = "${azurerm_subnet.VNET1.id}"
 }
 
   
