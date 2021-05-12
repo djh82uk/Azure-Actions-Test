@@ -24,6 +24,12 @@ vnet_name       = "GitHub-Test-VNet"
 resourcegroup   = "${azurerm_resource_group.RG1.name}"
 addrspace       = ["10.0.0.0/16"]
 location        = "${azurerm_resource_group.RG1.location}"
+ }
+  
+module "Subnet"{
+source = "../Modules/Subnet/"
+vnet_name       = "${azurerm_virtual_network.VNET1.name}"
+resourcegroup   = "${azurerm_resource_group.RG1.name}"
 subnet_name     = "vmsubnet"
 addrprefixes    = ["10.0.2.0/24"]
 }
@@ -48,8 +54,4 @@ image_version         = "latest"
 subnet_id             = "${azurerm_subnet.VNET1.id}"
 }
 
-  
-  
-
-  
-
+ 
