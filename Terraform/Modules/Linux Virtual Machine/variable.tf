@@ -6,6 +6,7 @@ variable "addr_allocation" {default = "dynamic"}
 variable "vm_name" {}
 variable "vm_size" {}
 variable "vm_admin_user" {}
+variable "vm_admin_pass" {}
 variable "osdisk_caching" {}
 variable "storage_account_type" {}
 variable "image_publisher" {}
