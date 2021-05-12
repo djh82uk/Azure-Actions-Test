@@ -50,17 +50,46 @@ jobs:
 
     - name: Terraform Init
       run: terraform init
+      env:
+        ARM_CLIENT_ID: ${{ steps.GetSecretAction.outputs.TerraformSPID }}
+        ARM_CLIENT_SECRET: ${{ steps.GetSecretAction.outputs.TerraformSpSecret }}
+        ARM_SUBSCRIPTION_ID: ${{ steps.GetSecretAction.outputs.SubscriptionID }}
+        ARM_TENANT_ID: ${{ steps.GetSecretAction.outputs.TenantID }}
+        ARM_ACCESS_KEY: ${{ steps.GetSecretAction.outputs.TerraformStorageKey }}"
+      
+        
 
 
     - name: Terraform Format
       run: terraform fmt -check
+      env:
+        ARM_CLIENT_ID: ${{ steps.GetSecretAction.outputs.TerraformSPID }}
+        ARM_CLIENT_SECRET: ${{ steps.GetSecretAction.outputs.TerraformSpSecret }}
+        ARM_SUBSCRIPTION_ID: ${{ steps.GetSecretAction.outputs.SubscriptionID }}
+        ARM_TENANT_ID: ${{ steps.GetSecretAction.outputs.TenantID }}
+        ARM_ACCESS_KEY: ${{ steps.GetSecretAction.outputs.TerraformStorageKey }}"
+      
 
 
     - name: Terraform Plan
       run: terraform plan
+      env:
+        ARM_CLIENT_ID: ${{ steps.GetSecretAction.outputs.TerraformSPID }}
+        ARM_CLIENT_SECRET: ${{ steps.GetSecretAction.outputs.TerraformSpSecret }}
+        ARM_SUBSCRIPTION_ID: ${{ steps.GetSecretAction.outputs.SubscriptionID }}
+        ARM_TENANT_ID: ${{ steps.GetSecretAction.outputs.TenantID }}
+        ARM_ACCESS_KEY: ${{ steps.GetSecretAction.outputs.TerraformStorageKey }}"
+      
 
 
     - name: Terraform Apply
+      env:
+        ARM_CLIENT_ID: ${{ steps.GetSecretAction.outputs.TerraformSPID }}
+        ARM_CLIENT_SECRET: ${{ steps.GetSecretAction.outputs.TerraformSpSecret }}
+        ARM_SUBSCRIPTION_ID: ${{ steps.GetSecretAction.outputs.SubscriptionID }}
+        ARM_TENANT_ID: ${{ steps.GetSecretAction.outputs.TenantID }}
+        ARM_ACCESS_KEY: ${{ steps.GetSecretAction.outputs.TerraformStorageKey }}"
+      
       if: github.ref == 'refs/heads/main' && github.event_name == 'push'
       run: terraform apply -auto-approve
 
