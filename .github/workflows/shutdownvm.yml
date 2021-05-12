@@ -22,4 +22,4 @@ jobs:
       uses: Azure/cli@1.0.4
       with:
       # Specify the script here
-        inlineScript: az vm stop --resource-group GitHub-Test-RG --name GitHub-Test-VM
+        inlineScript: az vm deallocate --resource-group GitHub-Test-RG --name GitHub-Test-VM
