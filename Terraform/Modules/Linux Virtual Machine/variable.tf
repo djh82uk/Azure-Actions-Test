@@ -13,3 +13,4 @@ variable "image_publisher" {}
 variable "image_offer" {}
 variable "image_sku" {}
 variable "image_version" {}
+variable "subnet_id" {}
