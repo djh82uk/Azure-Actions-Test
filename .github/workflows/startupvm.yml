@@ -8,7 +8,7 @@ on: workflow_dispatch
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   # This workflow contains a single job called "build"
-  build:
+  Startup:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
     steps:
@@ -16,12 +16,8 @@ jobs:
     - uses: actions/checkout@v2
     - uses: Azure/login@v1
       with:
-        creds: ${{ secrets.AZURE_CREDENTIALS }}
-    - uses: Azure/get-keyvault-secrets@v1
-      with: 
-        keyvault: "SharedServicesKeyVault"
-        secrets: 'TenantID, SubscriptionID, TerraformSpSecret, TerraformSPID, TerraformStorageKey, github-test-admin-user, github-test-admin-pass'
-      id: GetSecretAction
+        creds: ${{ secrets.AZURE_VM_CREDENTIALS }}
+
     
     - name: Azure CLI Action
       uses: Azure/cli@1.0.4
