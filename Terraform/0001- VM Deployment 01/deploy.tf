@@ -28,7 +28,7 @@ location        = "${azurerm_resource_group.RG1.location}"
   
 module "Subnet"{
 source = "../Modules/Subnet/"
-vnet_name       = "${azurerm_virtual_network.VNET1.name}"
+vnet_name       = "${module.vnetname.name}"
 resourcegroup   = "${azurerm_resource_group.RG1.name}"
 subnet_name     = "vmsubnet"
 addrprefixes    = ["10.0.2.0/24"]
@@ -51,7 +51,7 @@ image_publisher       = "Canonical"
 image_offer           = "UbuntuServer"
 image_sku             = "18.04-LTS"
 image_version         = "latest"
-subnet_id             = "${azurerm_subnet.VNET1.id}"
+subnet_id             = "${module.subnetid.id}"
 }
 
  
