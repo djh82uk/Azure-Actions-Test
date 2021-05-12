@@ -1,0 +1,101 @@
+name: "0001- VM Deployment 01"
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  PreReqs:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        shell: bash
+        working-directory: "./Terraform/0001- VM Deployment 01"
+    steps:
+    # checkout the repo
+    - uses: actions/checkout@v2
+    - uses: Azure/login@v1
+      with:
+        creds: ${{ secrets.AZURE_CREDENTIALS }}
+    - uses: Azure/get-keyvault-secrets@v1
+      with: 
+        keyvault: "SharedServicesKeyVault"
+        secrets: 'TenantID, SubscriptionID, TerraformSpSecret, TerraformSPID, TerraformStorageKey'
+      id: GetSecretAction
+    - uses: actions/checkout@v2
+    
+    - name: AZ Logout
+      run: az logout
+    
+    
+    - uses: cschleiden/replace-tokens@v1
+      with:
+        files: '["**/*.tf"]'
+      env:
+        resource_group_name: ${{ secrets.STORAGEACCOUNTRG }}
+        storage_account_name: ${{ secrets.STORAGEACCOUNTNAME }}
+        container_name: ${{ secrets.STORAGECONTAINERNAME }}
+        blob_name: ${{ secrets.BLOBNAME }}
+
+    
+    
+    - uses: hashicorp/setup-terraform@v1
+      with: 
+        terraform_version: 0.15.3
+      env:
+        ARM_CLIENT_ID: ${{ steps.GetSecretAction.outputs.TerraformSPID }}
+        ARM_CLIENT_SECRET: ${{ steps.GetSecretAction.outputs.TerraformSpSecret }}
+        ARM_SUBSCRIPTION_ID: ${{ steps.GetSecretAction.outputs.SubscriptionID }}
+        ARM_TENANT_ID: ${{ steps.GetSecretAction.outputs.TenantID }}
+
+      
+
+    - name: Terraform Init
+      run: terraform init
+      env:
+        ARM_CLIENT_ID: ${{ steps.GetSecretAction.outputs.TerraformSPID }}
+        ARM_CLIENT_SECRET: ${{ steps.GetSecretAction.outputs.TerraformSpSecret }}
+        ARM_SUBSCRIPTION_ID: ${{ steps.GetSecretAction.outputs.SubscriptionID }}
+        ARM_TENANT_ID: ${{ steps.GetSecretAction.outputs.TenantID }}
+
+      
+        
+
+
+    - name: Terraform Format
+      run: terraform fmt
+      env:
+        ARM_CLIENT_ID: ${{ steps.GetSecretAction.outputs.TerraformSPID }}
+        ARM_CLIENT_SECRET: ${{ steps.GetSecretAction.outputs.TerraformSpSecret }}
+        ARM_SUBSCRIPTION_ID: ${{ steps.GetSecretAction.outputs.SubscriptionID }}
+        ARM_TENANT_ID: ${{ steps.GetSecretAction.outputs.TenantID }}
+
+      
+
+
+    - name: Terraform Plan
+      run: terraform plan
+      env:
+        ARM_CLIENT_ID: ${{ steps.GetSecretAction.outputs.TerraformSPID }}
+        ARM_CLIENT_SECRET: ${{ steps.GetSecretAction.outputs.TerraformSpSecret }}
+        ARM_SUBSCRIPTION_ID: ${{ steps.GetSecretAction.outputs.SubscriptionID }}
+        ARM_TENANT_ID: ${{ steps.GetSecretAction.outputs.TenantID }}
+
+      
+
+
+    - name: Terraform Apply
+      env:
+        ARM_CLIENT_ID: ${{ steps.GetSecretAction.outputs.TerraformSPID }}
+        ARM_CLIENT_SECRET: ${{ steps.GetSecretAction.outputs.TerraformSpSecret }}
+        ARM_SUBSCRIPTION_ID: ${{ steps.GetSecretAction.outputs.SubscriptionID }}
+        ARM_TENANT_ID: ${{ steps.GetSecretAction.outputs.TenantID }}
+
+      
+      if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+      run: terraform apply -auto-approve
+
+
+
+

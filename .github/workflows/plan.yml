@@ -1,6 +1,9 @@
-name: "0001- VM Deployment 01"
+name: "0001- VM Plan 01"
 
-on: [push]
+on:
+  pull_request:
+    types: [assigned, opened, synchronize, reopened]
+
 
 jobs:
   PreReqs:
@@ -79,19 +82,7 @@ jobs:
         ARM_SUBSCRIPTION_ID: ${{ steps.GetSecretAction.outputs.SubscriptionID }}
         ARM_TENANT_ID: ${{ steps.GetSecretAction.outputs.TenantID }}
 
-      
 
-
-    - name: Terraform Apply
-      env:
-        ARM_CLIENT_ID: ${{ steps.GetSecretAction.outputs.TerraformSPID }}
-        ARM_CLIENT_SECRET: ${{ steps.GetSecretAction.outputs.TerraformSpSecret }}
-        ARM_SUBSCRIPTION_ID: ${{ steps.GetSecretAction.outputs.SubscriptionID }}
-        ARM_TENANT_ID: ${{ steps.GetSecretAction.outputs.TenantID }}
-
-      
-      if: github.ref == 'refs/heads/main' && github.event_name == 'push'
-      run: terraform apply -auto-approve
 
 
 
