@@ -1,4 +1,4 @@
-name: Terraform
+name: TerraformWorkflow
 
 on: [push]
 
@@ -34,7 +34,8 @@ jobs:
         storage_account_name: ${{ secrets.STORAGEACCOUNTNAME }}
         container_name: ${{ secrets.STORAGECONTAINERNAME }}
         key: ${{ steps.GetSecretAction.outputs.TerraformStorageKey }}
-
+        
+  Terraform:
     # Install the latest version of Terraform CLI and configure the Terraform CLI configuration file with a Terraform Cloud user API token
     - name: Setup Terraform
       env:
