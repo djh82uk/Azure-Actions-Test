@@ -14,3 +14,4 @@ variable "image_offer" {}
 variable "image_sku" {}
 variable "image_version" {}
 variable "subnet_id" {}
+variable "disable_password_auth" {default = true}
