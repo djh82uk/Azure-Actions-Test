@@ -23,11 +23,7 @@ jobs:
         keyvault: "SharedServicesKeyVault"
         secrets: 'TenantID, SubscriptionID, TerraformSpSecret, TerraformSPID, TerraformStorageKey'
       id: GetSecretAction
-    - uses: actions/checkout@v2
-    
-    - name: AZ Logout
-      run: az logout
-    
+
     
     - uses: cschleiden/replace-tokens@v1
       with:
