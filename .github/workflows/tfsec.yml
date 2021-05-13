@@ -1,0 +1,11 @@
+- name: Run tfsec with sarif upload
+  # You may pin to the exact commit or the version.
+  # uses: tfsec/tfsec-sarif-action@2ec44316ed27c50d48c931c3c628adc4c8bb1d2b
+  uses: tfsec/tfsec-sarif-action@v0.0.4
+  with:
+    # Directory to run the action on, from the repo root.
+Default is . ( root of the repository)
+
+    working_directory: # optional, default is .
+    # The path to write the sarif report, defaults to tfsec.sarif
+    sarif_file: # optional
