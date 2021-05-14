@@ -1,0 +1,26 @@
+name: eShopOnWeb Build and Push
+
+on: [pull_request, workflow_dispatch]
+
+jobs:
+  eshopbuild:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Azure Container Registry Login
+      uses: Azure/docker-login@v1
+      with:
+        username: hippokrates
+        password: ${{ secrets.registrypass }}
+        login-server: hippokrates.azurecr.io
+      
+    - name: Build and push Docker images
+      uses: docker/build-push-action@v2.4.0
+      with:
+        file: src/Web/Dockerfile
+        push: true
+        tags: hippokrates.azurecr.io/eshop:latest
+      
