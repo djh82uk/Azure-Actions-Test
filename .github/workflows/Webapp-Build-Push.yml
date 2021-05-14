@@ -3,7 +3,7 @@ name: eShopOnWeb Build and Push
 on: [push, pull_request, workflow_dispatch]
 
 jobs:
-  build:
+  eshopbuild:
 
     runs-on: ubuntu-latest
 
