@@ -16,7 +16,6 @@ jobs:
       username: hippokrates
       password: ${{ secrets.registrypass }}
       login-server: hippokrates.azurecr.io
-
     - name: Build and push Docker images
     uses: docker/build-push-action@v2.4.0
     with:
