@@ -19,3 +19,14 @@ jobs:
     
     - name: Test with dotnet
       run: dotnet test ./eShopOnWeb.sln --configuration Release
+      
+      
+    - name: Azure Container Registry Login
+    uses: Azure/docker-login@v1
+    with:
+      # Container registry username
+      username: # default is 
+      # Container registry password
+      password: # default is 
+      # Container registry server url
+      login-server: # default is https://index.docker.io/v1/
