@@ -25,8 +25,8 @@ jobs:
     uses: Azure/docker-login@v1
     with:
       # Container registry username
-      username: # default is 
+      username: hippokrates
       # Container registry password
-      password: # default is 
+      password: #${{ secrets.registrypass }}
       # Container registry server url
-      login-server: # default is https://index.docker.io/v1/
+      login-server: hippokrates.azurecr.io
