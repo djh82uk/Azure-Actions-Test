@@ -16,8 +16,7 @@ jobs:
       username: hippokrates
       password: ${{ secrets.registrypass }}
       login-server: hippokrates.azurecr.io
-      
-      
+
     - name: Build and push Docker images
     uses: docker/build-push-action@v2.4.0
     with:
@@ -63,5 +62,3 @@ jobs:
       target: # optional
       # GitHub Token used to authenticate against a repository for Git context
       github-token: # optional, default is ${{ github.token }}
-      
-
