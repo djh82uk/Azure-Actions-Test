@@ -61,12 +61,6 @@ jobs:
       uses: github/codeql-action/analyze@v1
 
 
-  eshopbuild:
-
-    runs-on: ubuntu-latest
-
-    steps:
-    - uses: actions/checkout@v2
 
     - name: Azure Container Registry Login
       uses: Azure/docker-login@v1
