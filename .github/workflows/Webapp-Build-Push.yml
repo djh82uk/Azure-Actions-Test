@@ -60,22 +60,18 @@ jobs:
     - name: Perform CodeQL Analysis
       uses: github/codeql-action/analyze@v1
 
-    - name: Container Image CI
-      build:
-        runs-on: ubuntu-latest
-        steps:
-        - uses: actions/checkout@v2
-        - name: Build the Container image
-          run: docker build src/Web/Dockerfile --file Dockerfile --tag localbuild/testimage:latest
-        - uses: anchore/scan-action@v2
-          id: scan
-          with:
-            image: "localbuild/testimage:latest"
-            acs-report-enable: true
-        - name: upload Anchore scan SARIF report
-          uses: github/codeql-action/upload-sarif@v1
-          with:
-            sarif_file: ${{ steps.scan.outputs.sarif }}
+
+    - name: Build the Container image
+      run: docker build src/Web/Dockerfile --file Dockerfile --tag localbuild/testimage:latest
+    - uses: anchore/scan-action@v2
+      id: scan
+      with:
+        image: "localbuild/testimage:latest"
+        acs-report-enable: true
+    - name: upload Anchore scan SARIF report
+      uses: github/codeql-action/upload-sarif@v1
+      with:
+        sarif_file: ${{ steps.scan.outputs.sarif }}
               
     - name: Inspect action SARIF report
       run: cat ${{ steps.scan.outputs.sarif }}
