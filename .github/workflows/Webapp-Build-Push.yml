@@ -62,7 +62,7 @@ jobs:
 
 
     - name: Build the Container image
-      run: docker build src/Web/ --file Dockerfile --tag localbuild/testimage:latest
+      run: docker build src/Web/Dockerfile --tag localbuild/testimage:latest
     - uses: anchore/scan-action@v2
       id: scan
       with:
