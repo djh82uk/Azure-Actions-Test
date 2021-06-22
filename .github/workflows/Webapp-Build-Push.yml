@@ -78,11 +78,11 @@ jobs:
 
 
     - name: Container Scan      
-    uses: azure/container-scan@v0
-    with:
-      image-name: hippokrates.azurecr.io/eshop:latest # loginServerlUrl/ would be empty if it's hosted on dockerhub; ${{ github.sha }} could also be replaced with any desired image tag
-      username: hippokrates
-      password: ${{ secrets.registrypass }}
+      uses: azure/container-scan@v0
+      with:
+        image-name: hippokrates.azurecr.io/eshop:latest # loginServerlUrl/ would be empty if it's hosted on dockerhub; ${{ github.sha }} could also be replaced with any desired image tag
+        username: hippokrates
+        password: ${{ secrets.registrypass }}
       
 
       
