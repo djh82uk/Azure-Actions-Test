@@ -81,8 +81,6 @@ jobs:
         file: src/Web/Dockerfile
         push: true
         tags: hippokrates.azurecr.io/eshop:latest
-        
-        name: eShopOnWeb Build and Push
 
 
     - name: Container Scan      
