@@ -81,4 +81,16 @@ jobs:
         file: src/Web/Dockerfile
         push: true
         tags: hippokrates.azurecr.io/eshop:latest
+        
+        name: eShopOnWeb Build and Push
+
+
+    - name: Container Scan      
+    uses: azure/container-scan@v0
+    with:
+      image-name: hippokrates.azurecr.io/eshop:latest # loginServerlUrl/ would be empty if it's hosted on dockerhub; ${{ github.sha }} could also be replaced with any desired image tag
+      username: hippokrates
+      password: ${{ secrets.registrypass }}
+      
+
       
