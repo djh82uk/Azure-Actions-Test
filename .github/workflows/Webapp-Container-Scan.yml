@@ -1,4 +1,4 @@
-name: eShopOnWeb Build and Push
+name: eShopOnWeb Container Scan
 
 on: [pull_request, workflow_dispatch]
 
@@ -29,7 +29,7 @@ jobs:
       with:
         file: src/Web/Dockerfile
         push: true
-        tags: hippokrates.azurecr.io/eshop:latest
+        tags: hippokrates.azurecr.io/eshop:scan
         
         
   scan:
@@ -42,7 +42,7 @@ jobs:
       uses: anchore/scan-action@v2
       id: scan
       with:
-        image: "hippokrates.azurecr.io/eshop:latest"
+        image: "hippokrates.azurecr.io/eshop:scan"
         acs-report-enable: true
     - name: upload Anchore scan SARIF report
       uses: github/codeql-action/upload-sarif@v1
