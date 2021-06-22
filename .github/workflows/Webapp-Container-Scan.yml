@@ -3,8 +3,8 @@ name: eShopOnWeb Container Scan
 on: [pull_request, workflow_dispatch]
 
 jobs:
-  Build:
-    name: Build
+  Scan:
+    name: Scan
     runs-on: ubuntu-latest
     permissions:
       actions: read
@@ -31,13 +31,7 @@ jobs:
         push: true
         tags: hippokrates.azurecr.io/eshop:latest
         
-        
-  scan:
-    name: Container Scan
-    runs-on: ubuntu-latest
-    steps:
-    - name: Checkout repository
-      uses: actions/checkout@v2
+
     - name: Container Scan
       uses: anchore/scan-action@v2
       id: scan
