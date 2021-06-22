@@ -76,8 +76,15 @@ jobs:
         push: true
         tags: hippokrates.azurecr.io/eshop:latest
         
-
-    - uses: anchore/scan-action@v2
+        
+  scan:
+    name: Container Scan
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+    - name: Container Scan
+      uses: anchore/scan-action@v2
       id: scan
       with:
         image: "hippokrates.azurecr.io/eshop:latest"
