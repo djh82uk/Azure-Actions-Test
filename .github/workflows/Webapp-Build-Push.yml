@@ -76,14 +76,4 @@ jobs:
         push: true
         tags: hippokrates.azurecr.io/eshop:latest
         
-        
-
-      
-
-      
-    - name: Container Scan      
-      uses: azure/container-scan@v0
-      with:
-        image-name: hippokrates.azurecr.io/eshop:latest
-        username: hippokrates
-        password: ${{ secrets.registrypass }}
+ 
