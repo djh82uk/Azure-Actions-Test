@@ -76,8 +76,4 @@ jobs:
         push: true
         tags: hippokrates.azurecr.io/eshop:latest
         
-        
-
-      
-
-      
+ 
