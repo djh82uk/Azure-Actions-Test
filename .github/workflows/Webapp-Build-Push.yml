@@ -1,6 +1,6 @@
 name: eShopOnWeb Build and Push
 
-on: [pull_request, workflow_dispatch]
+on: [pull_request_target, workflow_dispatch]
 
 jobs:
   analyze:
