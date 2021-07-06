@@ -2,9 +2,6 @@ name: eShopOnWeb Container Scan
 
 
 on:
-  push:
-    branches:
-      - main
   pull_request:
     types: [assigned, opened, synchronize, reopened]
     tags-ignore:
