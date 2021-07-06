@@ -1,4 +1,4 @@
-name: eShopOnWeb Container Scan
+name: eShopOnWeb Container Scan fro Dependabot
 
 
 on: [pull_request_target, workflow_dispatch]
