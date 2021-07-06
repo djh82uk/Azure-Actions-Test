@@ -1,6 +1,8 @@
 name: eShopOnWeb Container Scan
 
-on: [pull_request, pull_request, workflow_dispatch]
+
+on: [pull_request, pull_request_target, workflow_dispatch]
+
 
 jobs:
   Scan:
