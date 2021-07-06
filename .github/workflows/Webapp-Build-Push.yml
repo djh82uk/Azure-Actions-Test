@@ -1,6 +1,10 @@
 name: eShopOnWeb Build and Push
 
-on: [pull_request, workflow_dispatch]
+on:
+  pull_request:
+    types: [assigned, opened, synchronize, reopened]
+    tags-ignore:
+      - dependencies
 
 jobs:
   analyze:
