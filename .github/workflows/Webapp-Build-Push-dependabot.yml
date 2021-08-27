@@ -1,10 +1,6 @@
-name: eShopOnWeb Build and Push
+name: eShopOnWeb Build and Push for Dependabot
 
-on:
-  pull_request:
-    types: [assigned, opened, synchronize, reopened]
-    tags-ignore:
-      - dependencies
+on: [pull_request_target, workflow_dispatch]
 
 jobs:
   analyze:
@@ -80,4 +76,3 @@ jobs:
         push: true
         tags: hippokrates.azurecr.io/eshop:latest
         
- 

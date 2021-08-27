@@ -1,11 +1,7 @@
-name: eShopOnWeb Container Scan
+name: eShopOnWeb Container Scan for Dependabot
 
 
-on:
-  pull_request:
-    types: [assigned, opened, synchronize, reopened]
-    tags-ignore:
-      - dependencies
+on: [pull_request_target, workflow_dispatch]
 
 
 jobs:
@@ -51,6 +47,3 @@ jobs:
               
     - name: Inspect action SARIF report
       run: cat ${{ steps.scan.outputs.sarif }}
-
-
-      
